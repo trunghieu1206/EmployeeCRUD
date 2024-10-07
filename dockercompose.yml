@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    depends_on: # ensures that database starts before application
+      - postgres
+    environment:
+      # this will override properties written in application.properties
+      # if the below properties are not provided then spring boot will take default values
+      # declared in application.properties file
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/employee_directory
+      - SPRING_DATASOURCE_USERNAME=postgres # spring.datasource.username property in application.properties
+      - SPRING_DATASOURCE_PASSWORD=postgres # spring.datasource.password property
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "9999:8080"
+
+  postgres:
+    build:
+      context: .
+      dockerfile: postgres.Dockerfile
+    environment:
+      - POSTGRES_USER=postgres  #your required name
+      - POSTGRES_PASSWORD=postgres # your required password
+      - POSTGRES_DB=employee_directory

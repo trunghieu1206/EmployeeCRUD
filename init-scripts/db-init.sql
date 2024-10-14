@@ -2,9 +2,9 @@
 -- Table structure for table employee
 --
 
-DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS employees;
 
-CREATE TABLE employee (
+CREATE TABLE employees (
   id INT PRIMARY KEY NOT NULL,
   first_name varchar(45) DEFAULT NULL,
   last_name varchar(45) DEFAULT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE employee (
 -- Data for table employee
 --
 
-INSERT INTO employee (id, first_name, last_name, email) VALUES 
+INSERT INTO employees (id, first_name, last_name, email) VALUES
 	(1,'Leslie','Andrews','leslie@gmail.com'),
 	(2,'Emma','Baumgarten','emma@gmail.com'),
 	(3,'Avani','Gupta','avani@gmail.com'),

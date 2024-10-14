@@ -3,7 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: app
     depends_on: # ensures that database starts before application
       - postgres
     environment:

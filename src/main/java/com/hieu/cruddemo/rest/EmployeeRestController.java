@@ -30,6 +30,7 @@ public class EmployeeRestController {
 
         if(theEmployee == null){
             throw new RuntimeException("Employee id not found - " + employeeId);
+            
         }
 
         return theEmployee;

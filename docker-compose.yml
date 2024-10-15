@@ -13,6 +13,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres # spring.datasource.username property in application.properties
       - SPRING_DATASOURCE_PASSWORD=postgres # spring.datasource.password property
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SERVER_PORT=8080
     ports:
       - "9999:8080"
 

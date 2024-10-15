@@ -2,7 +2,7 @@ pipeline {
     agent {
         node {
             label 'docker-agent-alpine'
-            }
+        }
     }
     triggers {
         // poll once every 5 minutes, if there is new

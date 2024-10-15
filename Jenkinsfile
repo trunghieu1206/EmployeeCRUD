@@ -7,7 +7,7 @@ pipeline {
     triggers {
         // poll once every 5 minutes, if there is new
         // code on github, it will run the build
-        pollSCM '*/5 * * * *'
+        pollSCM '* * * * *'
     }
     stages {
         stage('Build') {

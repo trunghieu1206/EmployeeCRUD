@@ -1,33 +1,38 @@
 pipeline {
-    agent any
-
+    agent {
+        node {
+            label 'docker-agent-alpine'
+            }
+    }
+    triggers {
+        // poll once every 5 minutes, if there is new
+        // code on github, it will run the build
+        pollSCM '*/5 * * * *'
+    }
     stages {
         stage('Build') {
             steps {
-                echo 'Building on local'
-                sh 'mvn clean compile'
+                echo "Building.."
+                sh '''
+                echo "doing build stuff.."
+                '''
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing on local'
-                sh 'mvn test'
+                echo "Testing.."
+                sh '''
+                echo "doing test stuff.."
+                '''
             }
         }
-        stage('Deploy') {
+        stage('Deliver') {
             steps {
-                echo 'Deploying to Docker'
-                echo 'docker compose up'
+                echo 'Deliver....'
+                sh '''
+                echo "doing delivery stuff.."
+                '''
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Build and deployment successful!'
-        }
-        failure {
-            echo 'Build failed. Check the logs for more details.'
         }
     }
 }

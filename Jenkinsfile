@@ -4,17 +4,12 @@ pipeline {
             label 'docker-agent-alpine'
         }
     }
-//     triggers {
-//         // poll once every 5 minutes, if there is new
-//         // code on github, it will run the build
-//         pollSCM '* * * * *'
-//     }
     stages {
         stage('Build') {
             steps {
                 echo "Building.."
                 sh '''
-                echo "doing build stuff.."
+                ./mvnw clean
                 '''
             }
         }
@@ -22,7 +17,7 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                echo "doing test stuff.."
+                ./mvnw spring-boot:run
                 '''
             }
         }

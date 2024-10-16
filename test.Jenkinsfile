@@ -10,6 +10,7 @@ pipeline {
         // forwarded by the socat container
         DOCKER_HOST = 'tcp://c3cb02c61d96:2375'
         DOCKER_TLS_VERIFY = '0'
+        DOCKER_CERT_PATH = '' // Ensure this is not set
     }
     stages {
         stage('Checkout') {

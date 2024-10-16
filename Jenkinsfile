@@ -5,11 +5,6 @@ pipeline {
         }
     }
     stages {
-        stage('Checkout'){
-            steps{
-                git url: 'https://github.com/trunghieu1206/EmployeeCRUD.git', branch: 'main'
-            }
-        }
         stage('Compile') {
             steps {
                 sh '''

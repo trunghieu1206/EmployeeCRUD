@@ -1,3 +1,4 @@
+CODE_CHANGES = getGitChanges()
 pipeline {
     agent {
         node {
@@ -5,19 +6,22 @@ pipeline {
         }
     }
     stages {
-        stage('Build') {
+        stage('Checkout'){
+            steps{
+                git url: 'https://github.com/trunghieu1206/EmployeeCRUD.git', branch: 'main'
+            }
+        }
+        stage('Compile') {
             steps {
-                echo "Building.."
                 sh '''
-                ./mvnw clean
+                ./mvnw compile
                 '''
             }
         }
         stage('Test') {
             steps {
-                echo "Testing.."
                 sh '''
-                ./mvnw spring-boot:run
+                ./mvnw test
                 '''
             }
         }

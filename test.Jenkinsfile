@@ -9,6 +9,7 @@ pipeline {
         // points to the Docker daemon's address, which is being
         // forwarded by the socat container
         DOCKER_HOST = 'tcp://c3cb02c61d96:2375'
+        DOCKER_TLS_VERIFY = '0'
     }
     stages {
         stage('Checkout') {
@@ -18,7 +19,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean'
             }
         }
         stage('Build Docker Image') {

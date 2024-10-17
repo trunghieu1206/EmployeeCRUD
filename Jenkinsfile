@@ -11,10 +11,6 @@ pipeline {
             steps {
                 sh "mvn clean"
                 sh '''
-                    echo "cleaning previous docker compose"
-                    docker compose down
-                '''
-                sh '''
                     echo "building using docker compose"
                     docker compose build
                 '''

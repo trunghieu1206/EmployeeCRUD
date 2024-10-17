@@ -9,13 +9,15 @@ pipeline {
         }
         stage('Build') {
             steps {
-                try{
-                    sh '''
-                        echo "cleaning previous build"
-                        docker compose down
-                    '''
-                } catch(Exception e){
-                    echo "previous build does not exist"
+                script{
+                    try{
+                        sh '''
+                            echo "cleaning previous build"
+                            docker compose down
+                        '''
+                    } catch(Exception e){
+                        echo "previous build does not exist"
+                    }
                 }
                 sh '''
                     echo "building using docker compose"

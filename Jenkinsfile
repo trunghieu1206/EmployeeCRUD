@@ -20,6 +20,15 @@ pipeline {
                 '''
             }
         }
+        stage('Vulnerability Scan'){
+            steps{
+                echo "Scanning using Snyk"
+                snykSecurity(
+                    snykInstallation: 'snyk@latest'
+                    snykTokenId: 'snyk-api-token'
+                )
+            }
+        }
         stage('Deploy') {
             steps {
                 sh '''

@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,17 +10,21 @@ pipeline {
         stage('Build') {
             steps {
                 sh "mvn clean"
-                echo "cleaning previous docker compose"
-                sh "docker compose down"
-                echo "building using docker compose"
-                sh "docker compose build"
+                sh '''
+                    echo "cleaning previous docker compose"
+                    docker compose down
+                '''
+                sh '''
+                    echo "building using docker compose"
+                    docker compose build
+                '''
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying using docker compose'
                 sh '''
-                docker compose up -d
+                    echo "Deploying using docker compose"
+                    docker compose up -d
                 '''
             }
         }

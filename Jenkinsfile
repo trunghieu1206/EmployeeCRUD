@@ -9,8 +9,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "mvn clean"
                 sh '''
+                    echo "cleaning previous build"
+                    docker compose down
                     echo "building using docker compose"
                     docker compose build
                 '''
@@ -31,12 +32,6 @@ pipeline {
                     echo "Deploying using docker compose"
                     docker compose up -d
                 '''
-            }
-        }
-        stage('Cleanup'){
-            steps{
-                echo "cleaning up"
-                sh "docker compose down "
             }
         }
     }

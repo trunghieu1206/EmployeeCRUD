@@ -9,6 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                // try-catch block needs to be placed in a script{}
                 script{
                     try{
                         sh '''
@@ -29,6 +30,7 @@ pipeline {
             steps{
                 echo "Scanning using Snyk"
                 snykSecurity(
+                    // values must be from configuration settings
                     snykInstallation: 'snyk@latest',
                     snykTokenId: 'snyk-api-token'
                 )
@@ -39,6 +41,14 @@ pipeline {
                 sh '''
                     echo "Deploying using docker compose"
                     docker compose up -d
+                '''
+            }
+        }
+        stage('Clean up') {
+            steps {
+                sh '''
+                    echo "Cleaing up"
+                    docker compose down
                 '''
             }
         }

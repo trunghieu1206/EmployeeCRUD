@@ -1,9 +1,13 @@
 package com.hieu.cruddemo.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @Entity
-@Table(name="employee")
+@Table(name="employees")
+@Builder
+@AllArgsConstructor
 public class Employee {
 
     //define fields
@@ -68,8 +72,6 @@ public class Employee {
 
 
     //define toString
-
-
     @Override
     public String toString() {
         return "Employee{" +

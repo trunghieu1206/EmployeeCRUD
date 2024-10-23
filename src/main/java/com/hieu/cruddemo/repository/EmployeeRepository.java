@@ -19,12 +19,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(value = "SELECT * FROM employees WHERE id = :id", nativeQuery = true)
     Employee findById(@Param("id") int theId);
 
-    @Modifying // used when performing insert, update or delete, i.e. modifying table
-    @Query(value =
-            "INSERT INTO employees (first_name, last_name, email) " +
-            "VALUES (:#{#employee.firstName}, :#{#employee.lastName}, :#{#employee.email})", nativeQuery = true)
-    Employee save(@Param("employee") Employee theEmployee);
-
     @Modifying
     @Query(value = "DELETE * FROM employees WHERE id = :id", nativeQuery = true)
     void deleteById(@Param("id") int theId);

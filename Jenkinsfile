@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
         stage('Build') {
             steps {
                 // try-catch block needs to be placed in a script{}
@@ -47,7 +42,7 @@ pipeline {
         stage('Clean up') {
             steps {
                 sh '''
-                    echo "Cleaing up"
+                    echo "Cleaning up"
                     docker compose down
                 '''
             }

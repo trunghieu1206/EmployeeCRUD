@@ -41,6 +41,15 @@ public class EmployeeRestController {
         // this is to force a save of new item instead of update
         theEmployee.setId(0);
 
+        if(theEmployee.getFirstName() == null || theEmployee.getFirstName() == ""){
+            throw new NullPointerException("firstName cannot be NULL");
+        }
+        if(theEmployee.getLastName() == null || theEmployee.getLastName() == ""){
+            throw new NullPointerException("lastName cannot be NULL");
+        }
+        if(theEmployee.getEmail() == null || theEmployee.getEmail() == "") {
+            throw new NullPointerException("email cannot be NULL");
+        }
         Employee dbEmployee = employeeService.save(theEmployee);
 
         employeeService.save(dbEmployee);

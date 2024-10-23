@@ -21,6 +21,14 @@ pipeline {
                 '''
             }
         }
+        stage('Test'){
+            steps{
+                echo "Testing"
+                sh '''
+                    mvn test
+                '''
+            }
+        }
         stage('Vulnerability Scan'){
             steps{
                 echo "Scanning using Snyk"

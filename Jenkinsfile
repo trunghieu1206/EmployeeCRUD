@@ -2,6 +2,14 @@ pipeline {
     agent any
 
     stages {
+        stage('Test'){
+            steps{
+                echo "Testing"
+                sh '''
+                    mvn test
+                '''
+            }
+        }
         stage('Build') {
             steps {
                 // try-catch block needs to be placed in a script{}
@@ -21,24 +29,16 @@ pipeline {
                 '''
             }
         }
-        stage('Test'){
-            steps{
-                echo "Testing"
-                sh '''
-                    mvn test
-                '''
-            }
-        }
-        stage('Vulnerability Scan'){
-            steps{
-                echo "Scanning using Snyk"
-                snykSecurity(
-                    // values must be from configuration settings
-                    snykInstallation: 'snyk@latest',
-                    snykTokenId: 'snyk-api-token'
-                )
-            }
-        }
+//         stage('Vulnerability Scan'){
+//             steps{
+//                 echo "Scanning using Snyk"
+//                 snykSecurity(
+//                     // values must be from configuration settings
+//                     snykInstallation: 'snyk@latest',
+//                     snykTokenId: 'snyk-api-token'
+//                 )
+//             }
+//         }
         stage('Deploy') {
             steps {
                 sh '''

@@ -15,10 +15,10 @@ CREATE TABLE employees (
 -- Data for table employee
 --
 
-INSERT INTO employees (id, first_name, last_name, email) VALUES
-	(1,'Leslie','Andrews','leslie@gmail.com'),
-	(2,'Emma','Baumgarten','emma@gmail.com'),
-	(3,'Avani','Gupta','avani@gmail.com'),
-	(4,'Yuri','Petrov','yuri@gmail.com'),
-	(5,'Juan','Vega','juan@gmail.com');
+INSERT INTO employees (id, first_name, last_name, email) VALUES (1, 'Leslie', 'Andrews', 'leslie@gmail.com');
+INSERT INTO employees (id, first_name, last_name, email) VALUES (2, 'Emma', 'Baumgarten', 'emma@gmail.com');
+INSERT INTO employees (id, first_name, last_name, email) VALUES (3, 'Avani', 'Gupta', 'avani@gmail.com');
+INSERT INTO employees (id, first_name, last_name, email) VALUES (4, 'Yuri', 'Petrov', 'yuri@gmail.com');
+INSERT INTO employees (id, first_name, last_name, email) VALUES (5, 'Juan', 'Vega', 'juan@gmail.com');
+
 

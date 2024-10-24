@@ -38,6 +38,7 @@ pipeline {
                 sh '''
                     echo "Cleaning up"
                     docker compose down
+                    mvn clean
                 '''
             }
         }

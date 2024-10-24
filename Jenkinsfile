@@ -2,30 +2,16 @@ pipeline {
     agent any
 
     stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
         stage('Test'){
             steps{
                 echo "Testing"
                 sh '''
                     mvn test
-                '''
-            }
-        }
-        stage('Build') {
-            steps {
-                // try-catch block needs to be placed in a script{}
-                script{
-                    try{
-                        sh '''
-                            echo "cleaning previous build"
-                            docker compose down
-                        '''
-                    } catch(Exception e){
-                        echo "previous build does not exist"
-                    }
-                }
-                sh '''
-                    echo "building using docker compose"
-                    docker compose build
                 '''
             }
         }

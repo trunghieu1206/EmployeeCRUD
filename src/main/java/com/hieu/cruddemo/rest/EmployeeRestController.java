@@ -20,7 +20,7 @@ public class EmployeeRestController {
 
     //expose /employees and return a list of employees
     @GetMapping("/employees")
-    public List<Employee> findAll() {
+    public List<Employee> findEmployees() {
         return employeeService.findAll();
     }
 

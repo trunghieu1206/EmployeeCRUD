@@ -17,11 +17,15 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 class EmployeeRepositoryTest {
 
-    @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    public EmployeeRepositoryTest(EmployeeRepository employeeRepository){
+        this.employeeRepository = employeeRepository;
+    }
+
     @Test
-    public void EmployeeRepository_SaveAll_ReturnSavedPokemon() {
+    public void EmployeeRepository_SaveAll_ReturnSavedEmployee() {
         // Arrange
         Employee employee = Employee.builder()
                 .firstName("John")
@@ -64,5 +68,37 @@ class EmployeeRepositoryTest {
         Assertions.assertThat(employees).isNotNull();
         Assertions.assertThat(employees.size()).isEqualTo(7);
 
+    }
+
+    @Test
+    public void EmployeeRepository_FindById_ReturnEmployee() {
+        Employee employee = Employee.builder()
+                .firstName("John")
+                .lastName("Doe")
+                .email("john@mail.com")
+                .build();
+
+        employeeRepository.save(employee);
+
+        Employee resultEmployee = employeeRepository.findById(employee.getId());
+
+        Assertions.assertThat(resultEmployee).isNotNull();
+
+    }
+
+    @Test
+    public void EmployeeRepository_EmployeeDelete_ReturnEmployeeIsEmpty() {
+        Employee employee = Employee.builder()
+                .firstName("John")
+                .lastName("Doe")
+                .email("john@mail.com")
+                .build();
+
+        employeeRepository.save(employee);
+        employeeRepository.deleteById(employee.getId());
+
+        Employee findEmployee = employeeRepository.findById(employee.getId());
+
+        Assertions.assertThat(findEmployee).isNull();
     }
 }

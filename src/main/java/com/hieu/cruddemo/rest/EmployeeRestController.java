@@ -3,6 +3,7 @@ package com.hieu.cruddemo.rest;
 import com.hieu.cruddemo.entity.Employee;
 import com.hieu.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class EmployeeRestController {
     }
 
     @PostMapping("/employees")
+    @ResponseStatus(HttpStatus.CREATED) // return 201 as STATUS CODE since it is creating
     public Employee addEmployee(@RequestBody Employee theEmployee) {
         // just in case they pass an id in JSON, set id to 0
         // this is to force a save of new item instead of update
@@ -60,6 +62,8 @@ public class EmployeeRestController {
     @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee theEmployee){
         Employee dbEmployee = employeeService.save(theEmployee);
+
+        System.out.println("Updated Employee: " + dbEmployee);
 
         return dbEmployee;
     }

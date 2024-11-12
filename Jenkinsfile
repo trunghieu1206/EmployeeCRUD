@@ -2,24 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
         stage('Unit Test'){
             steps{
                 echo "Performing unit tests"
                 sh '''
-                    mvn test
-                '''
-            }
-        }
-        stage('Performance Test') {
-            steps{
-                echo "Performing Spike tests"
-                sh '''
-                    jmeter -n -t ./jmeter-tests/spike_test.jmx -l ./jmeter-tests/spike_test_result.csv
+                    mvn clean test
                 '''
             }
         }

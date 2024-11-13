@@ -78,6 +78,11 @@ pipeline {
     post{
         success{
             echo "pipeline succeeded"
+            sh '''
+                cd /jmeter-tests/report/
+                ls -la
+            '''
+
 
         }
         failure{

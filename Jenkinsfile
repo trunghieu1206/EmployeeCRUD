@@ -10,6 +10,14 @@ pipeline {
                 '''
             }
         }
+        stage('Integration Test'){
+            steps{
+                echo "Performing integration tests"
+                sh '''
+                    mvn verify -Dskip.ut=true
+                '''
+            }
+        }
 //         stage('Vulnerability Scan'){
 //             steps{
 //                 echo "Scanning using Snyk"
@@ -20,10 +28,10 @@ pipeline {
 //                 )
 //             }
 //         }
-        stage('Deploy') {
+        stage('Staging') {
             steps {
                 sh '''
-                    echo "Deploying using docker compose"
+                    echo "Deploying on Docker"
                     docker compose up -d
                 '''
             }

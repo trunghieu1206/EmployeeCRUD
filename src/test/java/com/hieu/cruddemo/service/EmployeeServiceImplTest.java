@@ -79,7 +79,7 @@ class EmployeeServiceImplTest {
 
         // Then
         Assertions.assertNotNull(resultEmployee);
-        Assertions.assertEquals("Joh", resultEmployee.getFirstName());
+        Assertions.assertEquals("John", resultEmployee.getFirstName());
         Assertions.assertEquals("Doe", resultEmployee.getLastName());
         Assertions.assertEquals("john@mail.com", resultEmployee.getEmail());
         Mockito.verify(employeeRepository, Mockito.times(1))

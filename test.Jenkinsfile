@@ -47,7 +47,7 @@ pipeline {
                     rm -rf ${JMETER_FOLDER}/report
 
                     echo "Performing performance test with Jmeter"
-                    jmeter -n -t ${JMETER_FOLDER}/performance_test_spring_boot_app.jmx -l ${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl -e -o ${JMETER_FOLDER}/report
+                    jmeter -n -t ${JMETER_FOLDER}/test.jmx -l ${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl -e -o ${JMETER_FOLDER}/report
                 '''
             }
         }
@@ -69,22 +69,21 @@ pipeline {
                 ])
             }
         }
-        stage('Clean up') {
-            steps {
-                sh '''
-                    echo "Cleaning up"
-                    docker compose down
-                    mvn clean
-                '''
-            }
-        }
     }
     post{
         success{
             echo "pipeline succeeded"
+
         }
         failure{
             echo "pipeline failed"
+        }
+        always{
+            sh '''
+                echo "Cleaning up"
+                docker compose down
+                mvn clean
+            '''
         }
     }
 }

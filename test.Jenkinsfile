@@ -50,7 +50,7 @@ pipeline {
                     mkdir ${JMETER_FOLDER}/report
 
                     echo "Performing performance test with Jmeter"
-                    jmeter -n -t ${JMETER_FOLDER}/test.jmx -l ${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl -e -o ${JMETER_FOLDER}/report
+                    jmeter -n -t ${JMETER_FOLDER}/test.jmx -l ${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl -e -o ${JMETER_FOLDER}/report -j ${JMETER_FOLDER}/jmeter.log
                 '''
             }
         }

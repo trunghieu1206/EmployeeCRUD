@@ -57,8 +57,6 @@ pipeline {
                 archiveArtifacts artifacts: "${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl", allowEmptyArchive: true
                 archiveArtifacts artifacts: "${JMETER_FOLDER}/report/*.html", allowEmptyArchive: true
 
-                // Publish the JMeter test results as visual reports
-                junit "${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl"
                 // This command will publish JMeter's HTML reports to Jenkins
                 publishHTML(target: [
                     reportName: "Performance test result", // Specifies the name of the report to be displayed in Jenkins

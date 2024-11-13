@@ -79,11 +79,9 @@ pipeline {
         success{
             echo "pipeline succeeded"
             sh '''
-                cd /jmeter-tests/report/
-                ls -la
+                cd jmeter-tests/report/
+                pwd
             '''
-
-
         }
         failure{
             echo "pipeline failed"

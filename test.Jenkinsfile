@@ -35,6 +35,7 @@ pipeline {
         stage('Staging') {
             steps {
                 sh '''
+                    pwd
                     echo "Deploying on Docker"
                     docker compose up -d
                 '''

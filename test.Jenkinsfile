@@ -51,6 +51,8 @@ pipeline {
 
                     echo "Performing performance test with Jmeter"
                     jmeter -n -t ${JMETER_FOLDER}/test.jmx -l ${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl -e -o ${JMETER_FOLDER}/report -j ${JMETER_FOLDER}/jmeter.log
+
+                    cat ${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl
                 '''
             }
         }
@@ -59,6 +61,8 @@ pipeline {
                 // archive results of performance test
                 archiveArtifacts artifacts: "${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl", allowEmptyArchive: true
                 archiveArtifacts artifacts: "${JMETER_FOLDER}/report/*.html", allowEmptyArchive: true
+
+                sh "ls -l ${JMETER_FOLDER}/report/index.html"
 
                 // This command will publish JMeter's HTML reports to Jenkins
                 publishHTML(target: [

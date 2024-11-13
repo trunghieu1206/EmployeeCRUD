@@ -54,15 +54,15 @@ pipeline {
         stage('Logging'){
             steps{
                 // archive results of performance test
-                archiveArtifacts artifacts: "${WORKSPACE}/${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl", allowEmptyArchive: true
-                archiveArtifacts artifacts: "${WORKSPACE}/${JMETER_FOLDER}/report/*.html", allowEmptyArchive: true
+                archiveArtifacts artifacts: "${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl", allowEmptyArchive: true
+                archiveArtifacts artifacts: "${JMETER_FOLDER}/report/*.html", allowEmptyArchive: true
 
                 // Publish the JMeter test results as visual reports
-                junit '${WORKSPACE}/${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl'
+                junit "${JMETER_FOLDER}/performance_test_spring_boot_app_result.jtl"
                 // This command will publish JMeter's HTML reports to Jenkins
                 publishHTML(target: [
                     reportName: "Performance test result", // Specifies the name of the report to be displayed in Jenkins
-                    reportDir: "${WORKSPACE}/${JMETER_FOLDER}/result", // The directory where the JMeter HTML reports are stored
+                    reportDir: "${JMETER_FOLDER}/result", // The directory where the JMeter HTML reports are stored
                     reportFiles: "index.html", // Specifies which HTML file(s) to use as the report (typically index.html in JMeter)
                     keepAll: true, // If set to true, all reports from previous builds will be kept, and users can view reports from past builds
                     alwaysLinkToLastBuild: true // When set to true, Jenkins will always link to the latest build’s report

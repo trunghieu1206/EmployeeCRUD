@@ -6,22 +6,22 @@ pipeline {
     }
 
     stages {
-//         stage('Unit Test'){
-//             steps{
-//                 echo "Performing unit tests"
-//                 sh '''
-//                     mvn clean test
-//                 '''
-//             }
-//         }
-//         stage('Integration Test'){
-//             steps{
-//                 echo "Performing integration tests"
-//                 sh '''
-//                     mvn verify -Dskip.ut=true
-//                 '''
-//             }
-//         }
+        stage('Unit Test'){
+            steps{
+                echo "Performing unit tests"
+                sh '''
+                    mvn clean test
+                '''
+            }
+        }
+        stage('Integration Test'){
+            steps{
+                echo "Performing integration tests"
+                sh '''
+                    mvn verify -Dskip.ut=true
+                '''
+            }
+        }
 //         stage('Vulnerability Scan'){
 //             steps{
 //                 echo "Scanning using Snyk"

@@ -43,7 +43,7 @@ pipeline {
 
                 sh '''
                     /Users/hieuhoang/Desktop/sonarqube/sonar-scanner-6.2.1.4610-macosx-aarch64/bin/sonar-scanner \
-                        -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \
+                        -Dsonar.projectKey=org.sonarqube:project \
                         -Dsonar.projectName=${env.SONAR_PROJECT_NAME} \
                         -Dsonar.projectVersion=1.0 \
                         -Dsonar.sources=src \

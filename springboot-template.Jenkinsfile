@@ -5,8 +5,8 @@ pipeline {
         DSONAR_PROJECT_KEY=''
         DSONAR_PROJECT_NAME=''
         DSONAR_PROJECT_VERSION=''
-        DSONAR_LOGIN="${env.SONAR_LOGIN}"
-        DSONAR_PASSWORD="${env.SONAR_PASSWORD}"
+        DSONAR_LOGIN=''
+        DSONAR_PASSWORD=''
     }
 
     stages {
@@ -18,6 +18,8 @@ pipeline {
                     ''', returnStdout: true).trim()
                     env.DSONAR_PROJECT_VERSION = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
                     env.DSONAR_PROJECT_KEY = "org.sonarqube:${env.SONAR_PROJECT_NAME}-${env.SONAR_PROJECT_VERSION}"
+                    env.DSONAR_LOGIN = env.SONAR_LOGIN
+                    env.DSONAR_PASSWORD = env.SONAR_PASSWORD
                 }
             }
         }
@@ -46,8 +48,8 @@ pipeline {
                         -Dsonar.projectName=${JOB_NAME} \
                         -Dsonar.projectVersion=1.0 \
                         -Dsonar.sources=src \
-                        -Dsonar.login=${SONAR_LOGIN} \
-                        -Dsonar.password=${SONAR_PASSWORD} \
+                        -Dsonar.login=${DSONAR_LOGIN} \
+                        -Dsonar.password=${DSONAR_PASSWORD} \
                         -Dsonar.java.binaries=target/classes \
                         -Dsonar.sourceEncoding=UTF-8
                 """

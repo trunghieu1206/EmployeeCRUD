@@ -4,9 +4,22 @@ pipeline {
     environment {
         SONAR_LOGIN='admin'
         SONAR_PASSWORD='Hieuhieuhieu1!'
+        SONAR_PROJECT_NAME=''
+        SONAR_PROJECT_VERSION=''
+        SONAR_PROJECT_KEY=''
     }
 
     stages {
+        stage('Init environment variables'){
+            steps{
+                script{
+                    env.MY_PROJECT_NAME = sh(script: "git rev-parse --show-toplevel | sed 's/.*\\/\\(.*\\)$/\\1/'", returnStdout: true).trim()
+                }
+
+                echo "SONAR_LOGIN: ${SONAR_LOGIN}"
+                echo "SONAR_PROJECT_NAME: ${SONAR_PROJECT_NAME}"
+            }
+        }
         stage('Clean and Compile'){
             steps{
                 echo "Compile source files"
@@ -26,6 +39,7 @@ pipeline {
         stage('Static code analysis'){
             steps{
                 // we have to use double quotes so that we can substitute environment variables
+                // these are either global variables provided by Jenkins or specified in environment{} block
                 sh """
                     /Users/hieuhoang/Desktop/sonarqube/sonar-scanner-6.2.1.4610-macosx-aarch64/bin/sonar-scanner \
                         -Dsonar.projectKey=${JOB_BASE_NAME} \

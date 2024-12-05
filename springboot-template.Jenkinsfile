@@ -21,10 +21,10 @@ pipeline {
                     env.DSONAR_LOGIN = env.SONAR_LOGIN
                     env.DSONAR_PASSWORD = env.SONAR_PASSWORD
                 }
-                sh "DSONAR_PROJECT_NAME: ${env.DSONAR_PROJECT_NAME}"
-                sh "DSONAR_PROJECT_VERSION: ${env.DSONAR_PROJECT_VERSION}"
-                sh "DSONAR_LOGIN: ${env.DSONAR_LOGIN}"
-                sh "DSONAR_PASSWORD: ${env.DSONAR_PASSWORD}"
+                echo "DSONAR_PROJECT_NAME: ${env.DSONAR_PROJECT_NAME}"
+                echo "DSONAR_PROJECT_VERSION: ${env.DSONAR_PROJECT_VERSION}"
+                echo "DSONAR_LOGIN: ${env.DSONAR_LOGIN}"
+                echo "DSONAR_PASSWORD: ${env.DSONAR_PASSWORD}"
             }
         }
         stage('Clean and Compile'){

@@ -25,7 +25,7 @@ pipeline {
                 echo "DSONAR_PROJECT_VERSION: ${env.DSONAR_PROJECT_VERSION}"
                 echo "DSONAR_LOGIN: ${env.DSONAR_LOGIN}"
                 echo "DSONAR_PASSWORD: ${env.DSONAR_PASSWORD}"
-                echo "SONAR_LOGIN: ${SONAR_LOGIN}"
+                echo "SONAR_LOGIN: ${env.SONAR_LOGIN}"
             }
         }
         stage('Clean and Compile'){

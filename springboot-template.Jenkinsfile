@@ -4,22 +4,14 @@ pipeline {
     environment {
         SONAR_LOGIN='admin'
         SONAR_PASSWORD='Hieuhieuhieu1!'
-        SONAR_PROJECT_NAME=''
-        SONAR_PROJECT_VERSION=''
-        SONAR_PROJECT_KEY=''
     }
 
     stages {
-        stage('Init environment variables'){
+        stage('Test ENV'){
             steps{
-                script{
-                    env.MY_PROJECT_NAME = sh(script: '''
-                        git rev-parse --show-toplevel | sed 's/.*\/\(.*\)$/\1/'
-                    ''', returnStdout: true).trim()
-                }
-
-                echo "SONAR_LOGIN: ${SONAR_LOGIN}"
-                echo "SONAR_PROJECT_NAME: ${SONAR_PROJECT_NAME}"
+                echo "projectName: ${projectName}"
+                echo "fullProjectName: ${fullProjectName}"
+                echo "projectName: ${projectName}"
             }
         }
         stage('Clean and Compile'){

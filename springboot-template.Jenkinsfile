@@ -39,9 +39,8 @@ pipeline {
         }
         stage('Static code analysis'){
             steps{
-
-
-                sh '''
+                // we have to use double quotes so that we can substitute environment variables
+                sh """
                     /Users/hieuhoang/Desktop/sonarqube/sonar-scanner-6.2.1.4610-macosx-aarch64/bin/sonar-scanner \
                         -Dsonar.projectKey=${JOB_BASE_NAME} \
                         -Dsonar.projectName=${JOB_NAME} \
@@ -51,7 +50,7 @@ pipeline {
                         -Dsonar.password=${SONAR_PASSWORD} \
                         -Dsonar.java.binaries=target/classes \
                         -Dsonar.sourceEncoding=UTF-8
-                '''
+                """
             }
         }
     }

@@ -43,12 +43,12 @@ pipeline {
 
                 sh '''
                     /Users/hieuhoang/Desktop/sonarqube/sonar-scanner-6.2.1.4610-macosx-aarch64/bin/sonar-scanner \
-                        -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                        -Dsonar.projectName=${SONAR_PROJECT_NAME} \
+                        -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} \
+                        -Dsonar.projectName=${env.SONAR_PROJECT_NAME} \
                         -Dsonar.projectVersion=1.0 \
                         -Dsonar.sources=src \
-                        -Dsonar.login=${SONAR_LOGIN} \
-                        -Dsonar.password=${SONAR_PASSWORD} \
+                        -Dsonar.login=${env.SONAR_LOGIN} \
+                        -Dsonar.password=${env.SONAR_PASSWORD} \
                         -Dsonar.java.binaries=target/classes \
                         -Dsonar.sourceEncoding=UTF-8
                 '''

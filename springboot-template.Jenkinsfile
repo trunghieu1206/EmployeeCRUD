@@ -11,14 +11,16 @@ pipeline {
 
     stages {
         stage('Init environment variables'){
-            script{
-                env.SONAR_PROJECT_NAME = sh(script: '''
-                    git rev-parse --show-toplevel | sed 's/.*\\/\\(.*\\)$/\\1/'
+            steps{
+                script{
+                    env.SONAR_PROJECT_NAME = sh(script: '''
+                        git rev-parse --show-toplevel | sed 's/.*\\/\\(.*\\)$/\\1/'
                     ''', returnStdout: true).trim()
-                env.SONAR_LOGIN = sh(script: "echo $SONAR_LOGIN", returnStdout: true).trim()
-                env.SONAR_PASSWORD = sh(script: "echo $SONAR_PASSWORD", returnStdout: true).trim()
-                env.SONAR_PROJECT_VERSION = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
-                env.SONAR_PROJECT_KEY = "org.sonarqube:${env.SONAR_PROJECT_NAME}-${env.SONAR_PROJECT_VERSION}"
+                    env.SONAR_LOGIN = sh(script: "echo $SONAR_LOGIN", returnStdout: true).trim()
+                    env.SONAR_PASSWORD = sh(script: "echo $SONAR_PASSWORD", returnStdout: true).trim()
+                    env.SONAR_PROJECT_VERSION = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
+                    env.SONAR_PROJECT_KEY = "org.sonarqube:${env.SONAR_PROJECT_NAME}-${env.SONAR_PROJECT_VERSION}"
+                }
             }
         }
         stage('Clean and Compile'){

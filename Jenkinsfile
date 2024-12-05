@@ -10,7 +10,7 @@ pipeline {
             steps{
                 echo "Performing unit tests"
                 sh '''
-                    mvn clean test
+                    ./mvnw clean test
                 '''
             }
         }
@@ -18,7 +18,7 @@ pipeline {
             steps{
                 echo "Performing integration tests"
                 sh '''
-                    mvn verify -Dskip.ut=true
+                    ./mvnw verify -Dskip.ut=true
                 '''
             }
         }
@@ -90,7 +90,7 @@ pipeline {
             sh '''
                 echo "Cleaning up"
                 docker compose down
-                mvn clean
+                ./mvnw clean
             '''
         }
     }

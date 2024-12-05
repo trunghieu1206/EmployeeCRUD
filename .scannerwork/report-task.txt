@@ -2,5 +2,5 @@ projectKey=org.sonarqube:scmgalaxy1
 serverUrl=http://localhost:9500
 serverVersion=10.7.0.96327
 dashboardUrl=http://localhost:9500/dashboard?id=org.sonarqube%3Ascmgalaxy1
-ceTaskId=6b9978f6-fc13-4246-b70b-37f81822d241
-ceTaskUrl=http://localhost:9500/api/ce/task?id=6b9978f6-fc13-4246-b70b-37f81822d241
+ceTaskId=8385e8ef-ecec-4ee4-89d3-7ae59f6fa050
+ceTaskUrl=http://localhost:9500/api/ce/task?id=8385e8ef-ecec-4ee4-89d3-7ae59f6fa050

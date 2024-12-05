@@ -18,7 +18,7 @@ pipeline {
                     ''', returnStdout: true).trim()
                     env.DSONAR_PROJECT_VERSION = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
                     env.DSONAR_PROJECT_KEY = "org.sonarqube:${env.SONAR_PROJECT_NAME}-${env.SONAR_PROJECT_VERSION}"
-                    env.DSONAR_LOGIN = env.SONAR_LOGIN
+                    env.DSONAR_LOGIN = sh(script: 'echo $SONAR_LOGIN', returnStdout: true).trim()
                     env.DSONAR_PASSWORD = env.SONAR_PASSWORD
                 }
                 echo "DSONAR_PROJECT_NAME: ${env.DSONAR_PROJECT_NAME}"

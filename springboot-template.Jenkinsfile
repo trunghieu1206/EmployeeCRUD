@@ -14,7 +14,7 @@ pipeline {
             steps{
                 script{
                     env.MY_PROJECT_NAME = sh(script: '''
-                        git rev-parse --show-toplevel | sed 's/.*\\/\\(.*\\)$/\\1/'
+                        git rev-parse --show-toplevel | sed 's/.*\/\(.*\)$/\1/'
                     ''', returnStdout: true).trim()
                 }
 

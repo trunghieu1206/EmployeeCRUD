@@ -13,7 +13,9 @@ pipeline {
         stage('Init environment variables'){
             steps{
                 script{
-                    env.MY_PROJECT_NAME = sh(script: "git rev-parse --show-toplevel | sed 's/.*\\/\\(.*\\)$/\\1/'", returnStdout: true).trim()
+                    env.MY_PROJECT_NAME = sh(script: '''
+                        git rev-parse --show-toplevel | sed 's/.*\\/\\(.*\\)$/\\1/'
+                    ''', returnStdout: true).trim()
                 }
 
                 echo "SONAR_LOGIN: ${SONAR_LOGIN}"

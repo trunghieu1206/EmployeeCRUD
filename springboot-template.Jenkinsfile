@@ -4,16 +4,10 @@ pipeline {
     environment {
         SONAR_LOGIN='admin'
         SONAR_PASSWORD='Hieuhieuhieu1!'
+        SONAR_PROJECT_VERSION=''
     }
 
     stages {
-        stage('Test ENV'){
-            steps{
-                echo "projectName: ${projectName}"
-                echo "fullProjectName: ${fullProjectName}"
-                echo "projectName: ${projectName}"
-            }
-        }
         stage('Clean and Compile'){
             steps{
                 echo "Compile source files"
